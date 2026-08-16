@@ -1,0 +1,26 @@
+{
+    "servers": {
+        "az-mcp-function-local-server": {
+            "type": "http",
+            "url": "http://localhost:7071/runtime/webhooks/mcp"
+        },
+        "azfuneu2mcp-remote-server": {
+            "type": "http",
+            "url": "https://azfuneu2mcp-cpg9grfxcecrg3hw.eastus2-01.azurewebsites.net/runtime/webhooks/mcp",
+            "headers": {
+                "x-functions-key": "${input:azfuneu2mcpMcpHostKey}"
+            }
+        }
+    },
+    "inputs": [
+        {
+            "type": "command",
+            "id": "azfuneu2mcpMcpHostKey",
+            "command": "azureFunctions.getMcpHostKey",
+            "args": {
+                "resourceId": "/subscriptions/3ba59a76-0b07-47f9-be85-048aa547c4a6/resourceGroups/rg-kevinjvn-5956/providers/Microsoft.Web/sites/azfuneu2mcp",
+                "projectType": "McpExtensionServer"
+            }
+        }
+    ]
+}
